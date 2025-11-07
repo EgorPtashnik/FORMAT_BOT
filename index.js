@@ -14,6 +14,8 @@ DBHelper.setupDatabase(db);
 
 const bot = new TelegramBot(CONFIG.BOT_TOKEN, { polling: true });
 
+bot.activeUsers = [];
+
 bot.onText(/\/start/, (msg) => Handler.handleStart(msg, bot, db));
 
 bot.on('message', msg => {

@@ -36,6 +36,10 @@ const initialize = (db, bot) => {
     }, {
         timezone: CONFIG.SCHEDULER.TIMEZONE
     });
+
+    cron.schedule(CONFIG.SCHEDULER['REFRESH'].CHECKTIME, () => {
+        refreshButtons(bot);
+    });
 };
 
 const checkAttendance = (db, bot, users) => {
@@ -82,6 +86,18 @@ const checkAttendance = (db, bot, users) => {
         }
     );
 };
+
+const refreshButtons = bot => {
+    const keyboard = Keyboard.getDefaultKeyboard();
+    bot.activeUsers.forEach(user => {
+        if (CONFIG.MANAGERS.find(manager_id => manager_id === user.userId)) {
+            bot.sendMessage(user.chatId,
+                `👋 Добро пожаловать в систему учета рабочего времени!`,
+                keyboard
+            );
+        }
+    });
+}
 
 module.exports = {
     initialize
