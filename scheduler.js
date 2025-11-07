@@ -88,7 +88,7 @@ const checkAttendance = (db, bot, users) => {
 };
 
 const refreshButtons = bot => {
-    console.log(`BUTTONS REFRESH FOR USERS: ${JSON.stringify(bot.activeUsers)}`);
+    console.log(`Рефреш кнопок для пользователей: ${JSON.stringify(bot.activeUsers)}`);
     const keyboard = Keyboard.getDefaultKeyboard();
     bot.activeUsers.forEach(user => {
         if (CONFIG.MANAGERS.find(manager_id => manager_id === user.userId)) {

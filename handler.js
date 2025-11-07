@@ -7,6 +7,7 @@ class Handler {
         const userId = msg.from.id;
         const keyboard = await Keyboard.getKeyboardForUser(db, userId);
         bot.activeUsers.push({chatId, userId});
+        console.log(`Новая сессия: Chat ID: ${chatId} User ID: ${userId}`);
         bot.sendMessage(chatId,
             `👋 Добро пожаловать в систему учета рабочего времени!`,
             keyboard
