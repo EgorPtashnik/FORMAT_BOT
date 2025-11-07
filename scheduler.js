@@ -39,6 +39,8 @@ const initialize = (db, bot) => {
 
     cron.schedule(CONFIG.SCHEDULER['REFRESH'].CHECKTIME, () => {
         refreshButtons(bot);
+    }, {
+        timezone: CONFIG.SCHEDULER.TIMEZONE
     });
 };
 
