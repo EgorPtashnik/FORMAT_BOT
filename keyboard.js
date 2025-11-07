@@ -3,7 +3,7 @@ const CONFIG = require('./config.js');
 
 const getKeyboardForUser = async (db, userId, date = new Date().toDateString()) => {
     return new Promise((resolve) => {
-        if (CONFIG.MANAGERS.find(manager_id => userId.toString() === manager_id)) {
+        if (CONFIG.MANAGERS.find(manager_id => userId === manager_id)) {
             resolve(getDefaultKeyboard(true));
         } else {
             DBHelper.checkExistingRecord(db, userId, date).then(record => {
