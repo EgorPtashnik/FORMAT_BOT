@@ -92,12 +92,17 @@ const checkAttendance = (db, bot, users) => {
 const refreshButtons = bot => {
     console.log(`Рефреш кнопок для пользователей: ${JSON.stringify(bot.activeUsers)}`);
     const keyboard = Keyboard.getDefaultKeyboard();
+	let timeoutValue = 10000;
     bot.activeUsers.forEach(user => {
         if (!CONFIG.MANAGERS.find(manager_id => manager_id === user.userId)) {
-            bot.sendMessage(user.chatId,
-                `👋 Добро пожаловать в систему учета рабочего времени!`,
-                keyboard
-            );
+            setTimeout(() => 
+			    bot.sendMessage(user.chatId,
+                    `👋 Добро пожаловать в систему учета рабочего времени!`,
+                     keyboard
+                ),
+				timeoutValue
+			);
+			timeoutValue += 10000;
         }
     });
 }
